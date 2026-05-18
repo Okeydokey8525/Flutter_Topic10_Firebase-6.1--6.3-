@@ -56,7 +56,6 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     try {
-      // Đăng ký Firebase Auth
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
             email: emailController.text.trim(),
@@ -65,7 +64,6 @@ class _LoginPageState extends State<LoginPage> {
 
       final user = userCredential.user;
 
-      // Lưu Firestore
       await FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
         'uid': user.uid,
         'email': user.email,

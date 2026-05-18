@@ -1,4 +1,4 @@
-import 'package:demo_topic10/6.3&6.4/post_management_screen.dart';
+import 'package:demo_topic10/6.3/post_management_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../6.2/login_6.2.dart';
