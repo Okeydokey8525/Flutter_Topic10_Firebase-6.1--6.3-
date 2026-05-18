@@ -16,9 +16,7 @@ class _PostManagementScreenState extends State<PostManagementScreen> {
     'posts',
   );
 
-  // Hàm Lưu bài viết vào Firestore
   Future<void> _savePost() async {
-    // Kiểm tra người dùng đã đăng nhập chưa
     User? user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -26,7 +24,7 @@ class _PostManagementScreenState extends State<PostManagementScreen> {
       );
       return;
     }
-    // Kiểm tra tiêu đề và nội dung không rỗng trước khi lưu
+
     if (_titleController.text.isNotEmpty &&
         _contentController.text.isNotEmpty) {
       await _posts.add({
@@ -62,7 +60,6 @@ class _PostManagementScreenState extends State<PostManagementScreen> {
       ),
       body: Column(
         children: [
-          // PHẦN 1: FORM ĐĂNG BÀI (Thiết kế Card SaaS)
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Card(
@@ -136,7 +133,6 @@ class _PostManagementScreenState extends State<PostManagementScreen> {
             ),
           ),
 
-          // Thanh phân cách kiểu SaaS
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: Row(
@@ -156,7 +152,6 @@ class _PostManagementScreenState extends State<PostManagementScreen> {
             ),
           ),
 
-          // PHẦN 2: DANH SÁCH THỜI GIAN THỰC
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: _posts.orderBy('timestamp', descending: true).snapshots(),
